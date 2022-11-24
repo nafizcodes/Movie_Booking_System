@@ -2,7 +2,7 @@ import java.util.*;
 
 public class CustomerDriver {
 
-    private static final Map<Integer, Customer> customers = new HashMap<>();       // User storage - <User ID - User Object>
+    private static final Map<String, Customer> customers = new HashMap<>();       // User storage - <User email - User Object>
     Customer customer = null;
     int number;
      
@@ -25,15 +25,15 @@ public class CustomerDriver {
 
 
     public void addCustomer(Customer customer) {
-        customers.putIfAbsent(customer.getId(), customer);
+        customers.putIfAbsent(customer.getEmail(), customer);
     }
 
-    public Customer getCustomer(int id) {
-        return customers.get(id);
+    public Customer getCustomer(String email) {
+        return customers.get(email);
     }
 
     public void create() {    //Create account
-        int id = 0;
+        String email = null;
         String password = null;
         String name;
         String address;
@@ -42,19 +42,11 @@ public class CustomerDriver {
         String answer;
 
         // ID handling
-        id = enterID();
+        email = enterEmail();
 
-        int length = String.valueOf(id).length();
-
-        while (!(length == 4)){
-        	System.out.println("Invalid length of ID. Please try again.");
-            id = enterID();
-            length = String.valueOf(id).length();
-        }
-
-        while (checkID(id) || id == 0) {
-        	System.out.println("ID value is already taken");
-            id = enterID();
+        while (checkEmail(email) || email == null) {
+        	System.out.println("Email is already taken");
+            email = enterEmail();
         }
 
         // Password handling
@@ -80,7 +72,7 @@ public class CustomerDriver {
         securityQuestion = selectSecurityQuestion();
         answer = enterSecurityQuestionAnswer();
 
-        customer = new Customer(id, password, securityQuestion, answer, name, address, creditCardNumber);
+        customer = new Customer(email, password, securityQuestion, answer, name, address, creditCardNumber);
 
         // Confirmation
       
@@ -101,15 +93,15 @@ public class CustomerDriver {
     }
 
     public Customer login() {      //login
-        int id;
+        String email;
         String password;
         
         System.out.println("\nLog in with credentials:");
-        id = enterID();
+        email = enterEmail();
        
         // User ID handling
-        if (getCustomer(id) == null || !customers.containsKey(id)) {
-        	System.out.println("ID does not exist in the system.\nTry again.");
+        if (getCustomer(email) == null || !customers.containsKey(email)) {
+        	System.out.println("Email does not exist in the system.\nTry again.");
         
             login();
         }
@@ -117,24 +109,24 @@ public class CustomerDriver {
 
         int attempts = 1;                         // Number of attempts user has taken to log in
         // User password handling
-        while (!password.equals(getCustomer(id).getPassword())) {
-            if (attempts >= 3) {
+        while (!password.equals(getCustomer(email).getPassword())) {
+            if (attempts >= 5) {
             	System.out.println("Maximum attempts exceeded. Terminating program.Try again later.");
                 System.exit(0);
             }
-            System.out.println("Incorrect password. Attempt " + attempts + "/3");
+            System.out.println("Incorrect password. Attempt " + attempts + "/5");
             attempts++;
             password = enterPassword();
         }
 
         //Security question handling 
          
-        System.out.println(getCustomer(id).getQuestion() + "\nAnswer:");
+        System.out.println(getCustomer(email).getQuestion() + "\nAnswer:");
         String reply = sc.next();
-        if (reply.equals(getCustomer(id).getAnswer())){
+        if (reply.equals(getCustomer(email).getAnswer())){
         	System.out.println("\n------------------------------------------------Login successful---------------------------------------------" +
             "\n--------------------------------------Welcome to Movie Booking System!-----------------------------------------");
-            customer = getCustomer(id);
+            customer = getCustomer(email);
             return customer;
         }else{
         	System.out.println("Incorrect Answer, Try again later.\n Thank you.");
@@ -164,10 +156,10 @@ public class CustomerDriver {
         return securityQuestions.get(selection_int -1);  //for index starting at 0
     }
 
-    private int enterID() {
-    	System.out.println("\nEnter the 4 digit Id: ");
-    	int input_id = sc.nextInt();
-        return input_id;
+    private String enterEmail() {
+    	System.out.println("\nEnter the email address: ");
+    	String input_email = sc.next();
+        return input_email;  
     }
 
     private String enterPassword() {
@@ -201,7 +193,7 @@ public class CustomerDriver {
         return input_ans;
     }
 
-    private boolean checkID(int id) {
-        return customers.containsKey(id);
+    private boolean checkEmail(String email) {
+        return customers.containsKey(email);
     }
 }

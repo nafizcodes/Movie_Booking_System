@@ -47,8 +47,6 @@ public class Main{
 		
 	}
 			
-			
-		 while(notexit) {
 			 
 			 if (choice.equals("a")) {
 					System.out.println("--------------------------Welcome to Admin's Portal-----------------------------------");
@@ -59,7 +57,7 @@ public class Main{
 		      case 1:
 		      a.create();
 		      break;
-		//
+		
 		      case 2:
 		      a.login();
 		    
@@ -82,6 +80,6 @@ public class Main{
 }
 	
 }
-}
+
 
 

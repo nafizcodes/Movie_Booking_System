@@ -2,7 +2,7 @@ import java.util.*;
 
 public class AdminDriver {
 
-    private static final Map<Integer, Admin> admins = new HashMap<>();       // User storage - <User ID - User Object>
+    private static final Map<String, Admin> admins = new HashMap<>();       // User storage - <User ID - User Object>
     Admin admin = null;
     int number;
      
@@ -25,15 +25,15 @@ public class AdminDriver {
 
 
     public void addAdmin(Admin admin) {
-        admins.putIfAbsent(admin.getId(), admin);
+        admins.putIfAbsent(admin.getEmail(), admin);
     }
 
-    public  Admin getAdmin(int id) {
-        return admins.get(id);
+    public Admin getAdmin(String email) {
+        return admins.get(email);
     }
 
     public void create() {    //Create account
-        int id = 0;
+        String email = null;
         String password = null;
         String name;
         String address;
@@ -41,19 +41,11 @@ public class AdminDriver {
         String answer;
         
         // ID handling
-        id = enterID();
+        email = enterEmail();
 
-        int length = String.valueOf(id).length();
-
-        while (!(length == 4)){
-        	System.out.println("Invalid length of ID. Please try again.");
-            id = enterID();
-            length = String.valueOf(id).length();
-        }
-
-        while (checkID(id) || id == 0) {
-        	System.out.println("ID value is already taken");
-            id = enterID();
+        while (checkEmail(email) || email == null) {
+        	System.out.println("Email is already taken");
+            email = enterEmail();
         }
 
         // Password handling
@@ -70,7 +62,7 @@ public class AdminDriver {
         securityQuestion = selectSecurityQuestion();
         answer = enterSecurityQuestionAnswer();
 
-        admin = new Admin(id, password, securityQuestion, answer, name, address);
+        admin = new Admin(email, password, securityQuestion, answer, name, address);
 
         // Confirmation
       
@@ -91,15 +83,15 @@ public class AdminDriver {
     }
 
     public Admin login() {      //login
-        int id;
+    	String email;
         String password;
         
         System.out.println("\nLog in with credentials:");
-        id = enterID();
+        email = enterEmail();
        
         // User ID handling
-        if (getAdmin(id) == null || !admins.containsKey(id)) {
-        	System.out.println("ID does not exist in the system.\nTry again.");
+        if (getAdmin(email) == null || !admins.containsKey(email)) {
+        	System.out.println("Email does not exist in the system.\nTry again.");
         
             login();
         }
@@ -107,7 +99,7 @@ public class AdminDriver {
 
         int attempts = 1;                         // Number of attempts user has taken to log in
         // User password handling
-        while (!password.equals(getAdmin(id).getPassword())) {
+        while (!password.equals(getAdmin(email).getPassword())) {
             if (attempts >= 3) {
             	System.out.println("Maximum attempts exceeded. Terminating program.Try again later.");
                 System.exit(0);
@@ -119,12 +111,13 @@ public class AdminDriver {
 
         //Security question handling 
          
-        System.out.println(getAdmin(id).getQuestion() + "\nAnswer:");
+        System.out.println(getAdmin(email).getQuestion() + "\nAnswer:");
         String reply = sc.next();
-        if (reply.equals(getAdmin(id).getAnswer())){
+        if (reply.equals(getAdmin(email).getAnswer())){
         	System.out.println("\n------------------------------------------------Login successful---------------------------------------------" +
             "\n--------------------------------------Welcome to Movie Booking System!-----------------------------------------");
-            admin = getAdmin(id);
+        	
+            admin = getAdmin(email);
             return admin;
         }else{
         	System.out.println("Incorrect Answer, Try again later.\n Thank you.");
@@ -154,10 +147,10 @@ public class AdminDriver {
         return securityQuestions.get(selection_int -1);  //for index starting at 0
     }
 
-    private int enterID() {
-    	System.out.println("\nEnter the 4 digit Id: ");
-    	int input_id = sc.nextInt();
-        return input_id;
+    private String enterEmail() {
+    	System.out.println("\nEnter the email address: ");
+    	String input_email = sc.next();
+        return input_email;  
     }
 
     private String enterPassword() {
@@ -184,7 +177,7 @@ public class AdminDriver {
         return input_ans;
     }
 
-    private boolean checkID(int id) {
-        return admins.containsKey(id);
+    private boolean checkEmail(String email) {
+        return admins.containsKey(email);
     }
 }

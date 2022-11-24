@@ -1,5 +1,5 @@
 public class Customer {
-        private int id;                 // Customer id number
+        private String email;           // Customer email address
         private String password;        // Customer password
         private String question;        // Customer security question
         private String answer;          // Customer security question answer
@@ -11,8 +11,8 @@ public class Customer {
             
         }
     
-        public Customer(int id, String password, String question, String answer, String name, String address, long cardNumber) {
-            this.id = id;
+        public Customer(String email, String password, String question, String answer, String name, String address, long cardNumber) {
+            this.email = email;
             this.password = password;
             this.question = question;
             this.answer = answer;
@@ -21,24 +21,24 @@ public class Customer {
             this.cardNumber = cardNumber;
         }
     
-        public Customer(int id, String password, String question, String answer) {
-            this.id = id;
+        public Customer(String email, String password, String question, String answer) {
+            this.email = email;
             this.password = password;
             this.question = question;
             this.answer = answer;
         }
     
-        public Customer(int id, String password) {
-            this.id = id;
+        public Customer(String email, String password) {
+            this.email = email;
             this.password = password;
         }
     
-        public int getId() {
-            return id;
+        public String getEmail() {
+            return email;
         }
     
-        public void setId(int id) {
-            this.id = id;
+        public void setId(String email) {
+            this.email = email;
         }
     
         public String getPassword() {
@@ -91,7 +91,7 @@ public class Customer {
     
         @Override
         public String toString() {
-            return  "\nId: " + id +
+            return  "\nEmail: " + email +
                     "\nPassword:" + password +
                     "\nSecurity question: " + question +
                     "\nAnswer: " + answer +
