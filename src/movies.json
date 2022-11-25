@@ -1,0 +1,331 @@
+[
+    {
+        "title": "Black Panther: Wakanda Forever",
+        "status": "Current",
+        "showtimes": [
+            "11:00",
+            "12:00",
+            "13:00"
+        ],
+        "theater": [
+            "Lubbock",
+            "Amarillo",
+            "Plainview",
+            "Snyder"
+        ],
+        "numberOfSeats": "55",
+        "synopsis": "The people of Wakanda fight to protect their home from intervening world powers as they mourn the death of King T'Challa.",
+        "runtime": "161 min",
+        "prices": [
+            "$5, $6, $10"
+        ],
+        "reviews": [
+            "Great Movie",
+            "Best Movie",
+            "The greatest movie ever",
+            "I like the lead in this movie"
+        ],
+        "castInfo": [
+            "Letitia Wright",
+            "Lupita Nyong'o",
+            "Danai Gurira",
+            "Winston Duke"
+        ]
+    },
+    {
+        "title": "Thor: Love and Thunder",
+        "status": "Upcoming",
+        "showtimes": [
+            "14:30",
+            "19:15",
+            "19:45"
+        ],
+        "theater": [
+            "Lubbock",
+            "Plainview",
+            "Abilene"
+        ],
+        "numberOfSeats": "64",
+        "synopsis": "Thor enlists the help of Valkyrie, Korg and ex-girlfriend Jane Foster to fight Gorr the God Butcher, who intends to make the gods extinct.",
+        "runtime": "118 min",
+        "prices": [
+            "$6, $7, $10"
+        ],
+        "reviews": [
+            "Great Movie",
+            "Best Movie",
+            "The greatest movie ever",
+            "I like the lead in this movie"
+        ],
+        "castInfo": [
+            "Chris Hemsworth",
+            "Natalie Portman",
+            "Christian Bale",
+            "Tessa Thompson"
+        ]
+    },
+    {
+        "title": "Doctor Strange in the Multiverse of Madness",
+        "status": "Current",
+        "showtimes": [
+            "11:30",
+            "16:15",
+            "22:45"
+        ],
+        "theater": [
+            "Amarillo",
+            "Snyder",
+            "Abilene",
+            "Snyder"
+        ],
+        "numberOfSeats": "42",
+        "synopsis": "Doctor Strange teams up with a mysterious teenage girl from his dreams who can travel across multiverses, to battle multiple threats, including other-universe versions of himself, which threaten to wipe out millions across the multiverse. They seek help from Wanda the Scarlet Witch, Wong and others.",
+        "runtime": "126 min",
+        "prices": [
+            "$5, $8, $11"
+        ],
+        "reviews": [
+            "Great Movie",
+            "Best Movie",
+            "The greatest movie ever",
+            "I like the lead in this movie"
+        ],
+        "castInfo": [
+            "Benedict Cumberbatch",
+            "Elizabeth Olsen",
+            "Chiwetel Ejiofor",
+            "Benedict Wong"
+        ]
+    },
+    {
+        "title": "Halloween Ends",
+        "status": "Upcoming",
+        "showtimes": [
+            "13:10",
+            "16:25",
+            "19:15"
+        ],
+        "theater": [
+            "Plainview",
+            "Snyder",
+            "Abilene"
+        ],
+        "numberOfSeats": "53",
+        "synopsis": "The saga of Michael Myers and Laurie Strode comes to a spine-chilling climax in the final installment of this trilogy.",
+        "runtime": "111 min",
+        "prices": [
+            "$6, $9, $13"
+        ],
+        "reviews": [
+            "Great Movie",
+            "Best Movie",
+            "The greatest movie ever",
+            "I like the lead in this movie"
+        ],
+        "castInfo": [
+            "Jamie Lee Curtis",
+            "Andi Matichak",
+            "James Jude Courtney",
+            "Rohan Campbell"
+        ]
+    },
+    {
+        "title": "Avatar: The Way of Water",
+        "status": "Current",
+        "showtimes": [
+            "15:20",
+            "16:55",
+            "23:35"
+        ],
+        "theater": [
+            "Lubbock",
+            "Levelland",
+            "Snyder",
+            "Abilene"
+        ],
+        "numberOfSeats": "65",
+        "synopsis": "Jake Sully lives with his newfound family formed on the planet of Pandora. Once a familiar threat returns to finish what was previously started, Jake must work with Neytiri and the army of the Na'vi race to protect their planet.",
+        "runtime": "190 min",
+        "prices": [
+            "$6, $8, $11"
+        ],
+        "reviews": [
+            "Great Movie",
+            "Best Movie",
+            "The greatest movie ever",
+            "I like the lead in this movie"
+        ],
+        "castInfo": [
+            "Zoe Saldana",
+            "Kate Winslet",
+            "Sigourney Weaver",
+            "Sam Worthington"
+        ]
+    },
+    {
+        "title": "Jurassic World: Dominion",
+        "status": "Upcoming",
+        "showtimes": [
+            "13:25",
+            "13:55",
+            "17:50"
+        ],
+        "theater": [
+            "Lubbock",
+            "Amarillo",
+            "Levelland",
+            "Plainview",
+            "Snyder",
+            "Abilene"
+        ],
+        "numberOfSeats": "34",
+        "synopsis": "Four years after the destruction of Isla Nublar, Biosyn operatives attempt to track down Maisie Lockwood, while Dr Ellie Sattler investigates a genetically engineered swarm of giant insects.",
+        "runtime": "147 min",
+        "prices": [
+            "$7, $10, $12"
+        ],
+        "reviews": [
+            "Great Movie",
+            "Best Movie",
+            "The greatest movie ever",
+            "I like the lead in this movie"
+        ],
+        "castInfo": [
+            "Chris Pratt",
+            "Bryce Dallas Howard",
+            "Laura Dern",
+            "Sam Neill"
+        ]
+    },
+    {
+        "title": "The Batman",
+        "status": "Current",
+        "showtimes": [
+            "10:30",
+            "11:30",
+            "21:15"
+        ],
+        "theater": [
+            "Amarillo",
+            "Levelland",
+            "Snyder",
+            "Abilene"
+        ],
+        "numberOfSeats": "47",
+        "synopsis": "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.",
+        "runtime": "176 min",
+        "prices": [
+            "$5, $6, $10"
+        ],
+        "reviews": [
+            "Great Movie",
+            "Best Movie",
+            "The greatest movie ever",
+            "I like the lead in this movie"
+        ],
+        "castInfo": [
+            "Robert Pattinson",
+            "Zoë Kravitz",
+            "Jeffrey Wright",
+            "Colin Farrell"
+        ]
+    },
+    {
+        "title": "Scream",
+        "status": "Upcoming",
+        "showtimes": [
+            "14:25",
+            "16:55",
+            "17:15"
+        ],
+        "theater": [
+            "Lubbock",
+            "Amarillo",
+            "Levelland",
+            "Plainview"
+        ],
+        "numberOfSeats": "38",
+        "synopsis": "25 years after a streak of brutal murders shocked the quiet town of Woodsboro, Calif., a new killer dons the Ghostface mask and begins targeting a group of teenagers to resurrect secrets from the town's deadly past.",
+        "runtime": "114 min",
+        "prices": [
+            "$6, $9, $10"
+        ],
+        "reviews": [
+            "Great Movie",
+            "Best Movie",
+            "The greatest movie ever",
+            "I like the lead in this movie"
+        ],
+        "castInfo": [
+            "Neve Campbell",
+            "Courteney Cox",
+            "David Arquette",
+            "Melissa Barrera"
+        ]
+    },
+    {
+        "title": "Fantastic Beasts: The Secrets of Dumbledore",
+        "status": "Current",
+        "showtimes": [
+            "13:10",
+            "17:25",
+            "22:35"
+        ],
+        "theater": [
+            "Lubbock",
+            "Snyder",
+            "Abilene"
+        ],
+        "numberOfSeats": "59",
+        "synopsis": "Professor Albus Dumbledore must assist Newt Scamander and his partners as Grindelwald begins to lead an army to eliminate all Muggles.",
+        "runtime": "142 min",
+        "prices": [
+            "$7, $8, $10"
+        ],
+        "reviews": [
+            "Great Movie",
+            "Best Movie",
+            "The greatest movie ever",
+            "I like the lead in this movie"
+        ],
+        "castInfo": [
+            "Eddie Redmayne",
+            "Jude Law",
+            "Ezra Miller",
+            "Dan Fogler"
+        ]
+    },
+    {
+        "title": "Uncharted",
+        "status": "Upcoming",
+        "showtimes": [
+            "12:00",
+            "14:55",
+            "21:25"
+        ],
+        "theater": [
+            "Lubbock",
+            "Levelland",
+            "Plainview",
+            "Abilene"
+        ],
+        "numberOfSeats": "35",
+        "synopsis": "Street-smart Nathan Drake is recruited by seasoned treasure hunter Victor Sully Sullivan to recover a fortune amassed by Ferdinand Magellan, and lost 500 years ago by the House of Moncada.",
+        "runtime": "116 min",
+        "prices": [
+            "$5, $9, $13"
+        ],
+        "reviews": [
+            "Great Movie",
+            "Best Movie",
+            "The greatest movie ever",
+            "I like the lead in this movie"
+        ],
+        "castInfo": [
+            "Tom Holland",
+            "Mark Wahlberg",
+            "Antonio Banderas",
+            "Sophia Ali"
+        ]
+    }
+]
