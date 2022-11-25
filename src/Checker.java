@@ -5,7 +5,8 @@ import java.util.regex.Pattern;
 public class Checker {
 
     public static boolean checkPassword(String password) {
-        return password == null || !containsDigit(password) || !containsUpperCase(password) || !containsSpecialCharacter(password) || password.length() < 6;
+        return password == null || !containsDigit(password) || !containsUpperCase(password)
+                || !containsSpecialCharacter(password) || password.length() < 6;
     }
 
     private static boolean containsUpperCase(String str) {
@@ -26,7 +27,7 @@ public class Checker {
         return str.chars().anyMatch(predicate);
     }
 
-    public static boolean checkCard(long cardnumber){
-        return !(String.valueOf(cardnumber).length() == 8); //assuming credit card number is 8digit
+    public static boolean checkCard(long cardnumber) {
+        return !(String.valueOf(cardnumber).length() == 8); // assuming credit card number is 8digit
     }
 }
