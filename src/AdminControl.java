@@ -1,24 +1,16 @@
-
 public class AdminControl {
-
-	public void viewStatus() {
-		
+	ManageMovies manageShows = new ManageMovies();
+	ManageShowtimes manageShowtimes = new ManageShowtimes();
+	public void addShows() {
+		manageShows.addShows();
 	}
-	
-	public void manageShows() {
-		
+	public void removeShows() {
+		manageShows.removeShows();
 	}
-	
-	private void viewShows() {
-		
+	private void addShowtimes() {
+		manageShowtimes.addShowtimes();
 	}
-	
-	private void addShows() {
-		
+	private void removeShowtimes() {
+		manageShowtimes.removeShowtimes();
 	}
-	
-	private void removeShows() {
-		
-	}
-
 }
