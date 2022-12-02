@@ -6,9 +6,9 @@ import org.json.simple.parser.ParseException;
 public class ManageMovies{
 	String title, status, numberOfSeats, synopsis, runtime, prices;
 	String[] showtimes, theater, reviews, castInfo;
-	int i = 0;
 	boolean flag = true;
 	String choice;
+	@SuppressWarnings("unchecked")
 	public void addShows() throws FileNotFoundException, IOException, ParseException {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("What movie would you like to add?");
@@ -17,28 +17,35 @@ public class ManageMovies{
 		status = sc.nextLine();
 		System.out.println("Add showtimes? Yes or No");
 		choice = sc.nextLine();
-		if(choice == "Yes") {
-			while(flag) {
-				System.out.println("Enter showtime or type exit to stop");
-				choice = sc.nextLine();
-				if(choice == "exit") {
-					flag = false;
-				}else {
-					showtimes[i] = choice;
-					i++;
+		int i = 0;
+		switch(choice) {
+			case "Yes", "yes": 
+				while(flag) {
+					System.out.println("Enter showtime or type exit to stop");
+					choice = sc.nextLine();
+					switch(choice) {
+							case "exit":
+								flag = false;
+							default:
+								showtimes[i] = choice;
+								i++;
+					}
 				}
-			}
+			default:
+				break;
 		}
 		flag = true;
 		int j = 0;
 		while(flag) {
 			System.out.println("Add theaters (type exit when finished)");
 			choice = sc.nextLine();
-			if(choice == "exit") {
-				flag = false;
-			}else {
-				theater[j] = choice;
-				j++;
+			switch(choice) {
+				case "exit":
+					flag = false;
+					System.out.println("Working");
+				default:
+					theater[j] = choice;
+					j++;
 			}
 		}
 		System.out.println("Add number of seats");
@@ -54,11 +61,12 @@ public class ManageMovies{
 		while(flag) {
 			System.out.println("Add reviews (type exit when finished)");
 			choice = sc.nextLine();
-			if(choice == "exit") {
-				flag = false;
-			}else {
-				reviews[k] = choice;
-				k++;
+			switch(choice) {
+				case "exit":
+					flag = false;
+				default:
+					reviews[k] = choice;
+					k++;
 			}
 		}
 		flag = true;
@@ -66,11 +74,12 @@ public class ManageMovies{
 		while(flag) {
 			System.out.println("Add cast information (type exit when finished");
 			choice = sc.nextLine();
-			if(choice == "exit") {
-				flag = false;
-			}else {
-				castInfo[n] = choice;
-				n++;
+			switch(choice) {
+				case "exit": 
+					flag = false;
+				default:
+					castInfo[n] = choice;
+					n++;
 			}
 		}
 		JSONParser parser = new JSONParser();
@@ -111,7 +120,16 @@ public class ManageMovies{
 			z++;
 		}
 		newObject.put("castInfo", castInfos);
-		System.out.println(newObject);
+		jsonArray.add(newObject);
+		jsonObject.put(status, jsonArray);
+		FileWriter fileToWrite = new FileWriter("src/movies.json", false);
+		try {
+			fileToWrite.write(jsonObject.toJSONString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		fileToWrite.close();
+		System.out.println(jsonObject);
 		System.out.println("All finished");
 		sc.close();
 	}
