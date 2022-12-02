@@ -5,6 +5,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		CustomerDriver c = new CustomerDriver();
 		AdminDriver a = new AdminDriver();
+		MovieDriver m = new MovieDriver();
 
 		boolean notexit = true;
 		int input = 0;
@@ -21,7 +22,7 @@ public class Main {
 			if (choice.equals("c")) {
 				System.out.println(
 						"--------------------------Welcome to Customer's Portal-----------------------------------");
-				System.out.println("\n\n1.Create Account. \n2.Login  \n3.Exit \nChoose Option: ");
+				System.out.println("\n\n1.Create Account \n2.Login  \n3.Exit \nChoose Option: ");
 
 				int input_int = sc.nextInt();
 
@@ -32,6 +33,22 @@ public class Main {
 
 					case 2:
 						c.login();
+						System.out.println(
+								"\n\n1.Browse Upcoming Movies \n2.Browse Current Movies \n3.Exit \nChoose Option: ");
+
+						int movieInput = sc.nextInt();
+
+						switch (movieInput) {
+							case 1:
+								m.browseUpcoming();
+							case 2:
+								m.browseCurrent();
+							case 3:
+								System.out.println("Terminating from the program!");
+								notexit = false;
+								break;
+						}
+
 						System.exit(0);
 						break;
 
@@ -43,13 +60,12 @@ public class Main {
 					default:
 						break;
 				}
-
 			}
 
 			if (choice.equals("a")) {
 				System.out.println(
 						"--------------------------Welcome to Admin's Portal-----------------------------------");
-				System.out.println("\n\n1.Create Account. \n2.Login  \n3.Exit \nChoose Option: ");
+				System.out.println("\n\n1.Create Account \n2.Login  \n3.Exit \nChoose Option: ");
 				int input_int = sc.nextInt();
 				//
 				switch (input_int) {
@@ -73,7 +89,5 @@ public class Main {
 				}
 			}
 		}
-		System.exit(0);
 	}
-
 }
