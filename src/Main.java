@@ -1,11 +1,16 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
+import org.json.simple.parser.ParseException;
+
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
 		Scanner sc = new Scanner(System.in);
 		CustomerDriver c = new CustomerDriver();
 		AdminDriver a = new AdminDriver();
 		MovieDriver m = new MovieDriver();
+		AdminControl ac = new AdminControl();
 
 		boolean notexit = true;
 		int input = 0;
@@ -77,8 +82,25 @@ public class Main {
 
 					case 2:
 						a.login();
+						System.out.println("\n1. Add movies \n2. Remove movies\n3. Add showtimes\n4. Remove showtimes\n5. Exit\nChoose Option");
+						int adminInput = sc.nextInt();
+						switch(adminInput) {
+							case 1:
+								ac.addShows();
+							case 2:
+								ac.removeShows();
+							case 3:
+								ac.addShowtimes();
+							case 4:
+								ac.removeShowtimes();
+							case 5: 
+								System.out.println("Terminating from the program!");
+								notexit = false;
+								break;
+						}
 						System.exit(0);
 						break;
+						
 
 					case 3:
 						System.out.println("Terminating from the program!");

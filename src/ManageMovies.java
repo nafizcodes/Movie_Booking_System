@@ -15,26 +15,17 @@ public class ManageMovies{
 		title = sc.nextLine();
 		System.out.println("Current or Upcoming?");
 		status = sc.nextLine();
-		System.out.println("Add showtimes? Yes or No");
-		choice = sc.nextLine();
 		int i = 0;
-		switch(choice) {
-			case "yes": 
-				while(flag) {
-					System.out.println("Enter showtime or type exit to stop");
-					choice = sc.nextLine();
-					switch(choice) {
-							case "exit":
-								flag = false;
-							default:
-								showtimes[i] = choice;
-								i++;
-					}
-				}
-			case "no":
-				break;
-			default:
-				break;
+		while(flag) {
+			System.out.println("Enter showtimes (type exit to stop)");
+			choice = sc.nextLine();
+			switch(choice) {
+					case "exit":
+						flag = false;
+					default:
+						showtimes[i] = choice;
+						i++;
+			}
 		}
 		flag = true;
 		int j = 0;
@@ -178,8 +169,9 @@ public class ManageMovies{
 	    }
 		for(int i = 0; i < jsonArray.size(); i++) {
 			JSONObject movies = (JSONObject) jsonArray.get(i);
+			JSONObject movie = (JSONObject) movies.get("title");
 			StringWriter out = new StringWriter();
-			movies.writeJSONString(out);
+			movie.writeJSONString(out);
 			String movieTitle = out.toString();
 			if(movieTitle != title) {
 				temp.add(movies);
