@@ -41,8 +41,10 @@ public class Main {
 						switch (movieInput) {
 							case 1:
 								m.browseUpcoming();
+								break;
 							case 2:
 								m.browseCurrent();
+								break;
 							case 3:
 								System.out.println("Terminating from the program!");
 								notexit = false;
