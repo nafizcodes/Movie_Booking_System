@@ -12,10 +12,10 @@ public class AdminControl {
 	public void removeShows() throws FileNotFoundException, IOException, ParseException {
 		manageShows.removeShows();
 	}
-	private void addShowtimes() {
+	private void addShowtimes() throws FileNotFoundException, IOException, ParseException {
 		manageShowtimes.addShowtimes();
 	}
-	private void removeShowtimes() {
+	private void removeShowtimes() throws FileNotFoundException, IOException, ParseException {
 		manageShowtimes.removeShowtimes();
 	}
 }
