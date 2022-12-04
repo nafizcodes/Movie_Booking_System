@@ -69,12 +69,8 @@ public class MovieDriver {
                 System.out.println("\nRuntime: " + runtime);
 
                 // print prices
-                JSONArray prices = (JSONArray) movie.get("prices");
-                System.out.println("\nPrices:");
-                Iterator pricesIterator = prices.iterator();
-                while (pricesIterator.hasNext()) {
-                    System.out.println("- " + pricesIterator.next());
-                }
+                String prices = (String) movie.get("prices");
+                System.out.println("\nPrice: " + prices);
 
                 // print reviews
                 JSONArray reviews = (JSONArray) movie.get("reviews");
@@ -103,7 +99,7 @@ public class MovieDriver {
         try {
             Object obj = parser.parse(new FileReader("src/movies.json"));
             JSONObject jsonObject = (JSONObject) obj;
-
+            SelectMovie sm = new SelectMovie();
             JSONArray current = (JSONArray) jsonObject.get("Current");
 
             System.out.println("\n--------------------Current Movies-----------------------");
@@ -159,12 +155,8 @@ public class MovieDriver {
                 System.out.println("\nRuntime: " + runtime);
 
                 // print prices
-                JSONArray prices = (JSONArray) movie.get("prices");
-                System.out.println("\nPrices:");
-                Iterator pricesIterator = prices.iterator();
-                while (pricesIterator.hasNext()) {
-                    System.out.println("- " + pricesIterator.next());
-                }
+                String prices = (String) movie.get("prices");
+                System.out.println("\nPrice: " + prices);
 
                 // print reviews
                 JSONArray reviews = (JSONArray) movie.get("reviews");
@@ -182,7 +174,7 @@ public class MovieDriver {
                     System.out.println("- " + castInfoIterator.next());
                 }
             }
-
+            sm.selectMovie();
         } catch (Exception e) {
             throw new IllegalArgumentException("Problem on reading JSON: " , e);
         }
