@@ -9,13 +9,13 @@ public abstract class Movie {
 	protected String numberOfSeats;
 	protected String synopsis;
 	protected String runtime;
-	protected ArrayList<String> prices;
+	protected String prices;
 	protected ArrayList<String> reviews;
 	protected ArrayList<String> castInfo;
 
 	// Constructor
 	public Movie(String title, String status, ArrayList<String> showtimes, ArrayList<String> theaters,
-			String numberOfSeats, String synopsis, String runtime, ArrayList<String> prices, ArrayList<String> reviews,
+			String numberOfSeats, String synopsis, String runtime, String prices, ArrayList<String> reviews,
 			ArrayList<String> castInfo) {
 		this.title = title;
 		this.status = status;
@@ -86,11 +86,11 @@ public abstract class Movie {
 		this.runtime = runtime;
 	}
 
-	public ArrayList<String> getPrices() {
+	public String getPrices() {
 		return this.prices;
 	}
 
-	public void setPrices(ArrayList<String> prices) {
+	public void setPrices(String prices) {
 		this.prices = prices;
 	}
 
