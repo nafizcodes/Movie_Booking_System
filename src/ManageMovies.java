@@ -5,11 +5,14 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 public class ManageMovies{
 	String title, status, numberOfSeats, synopsis, runtime, prices;
-	String[] showtimes, theater, reviews, castInfo, titleOfMovies;
 	boolean flag = true;
 	String choice = "";
 	@SuppressWarnings("unchecked")
 	public void addShows() throws FileNotFoundException, IOException, ParseException {
+		String[] showtimes = new String[10]; 
+		String[] theater = new String[10]; 
+		String[] reviews = new String[10]; 
+		String[] castInfo = new String[10]; 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("What movie would you like to add?");
 		title = sc.nextLine();
@@ -35,7 +38,6 @@ public class ManageMovies{
 			switch(choice) {
 				case "exit":
 					flag = false;
-					System.out.println("Working");
 				default:
 					theater[j] = choice;
 					j++;
@@ -173,7 +175,9 @@ public class ManageMovies{
 			StringWriter out = new StringWriter();
 			movie.writeJSONString(out);
 			String movieTitle = out.toString();
-			if(movieTitle != title) {
+			if(movieTitle.equals(title)) {
+				continue;
+			}else {
 				temp.add(movies);
 			}
 		}

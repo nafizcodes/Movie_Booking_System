@@ -12,7 +12,7 @@ public class Main {
 		MovieDriver m = new MovieDriver();
 		AdminControl ac = new AdminControl();
 
-		boolean notexit = true;
+		boolean notexit = true, flag = true;
 		int input = 0;
 		String choice;
 
@@ -38,25 +38,28 @@ public class Main {
 
 					case 2:
 						c.login();
-						System.out.println(
-								"\n\n1.Browse Upcoming Movies \n2.Browse Current Movies \n3.Exit \nChoose Option: ");
-
-						int movieInput = sc.nextInt();
-
-						switch (movieInput) {
-							case 1:
-								m.browseUpcoming();
-								break;
-							case 2:
-								m.browseCurrent();
-								break;
-							case 3:
-								System.out.println("Terminating from the program!");
-								notexit = false;
-								break;
+						flag = true;
+						while(flag) {
+							System.out.println(
+									"\n\n1.Browse Upcoming Movies \n2.Browse Current Movies \n3.Return to previous menu\n4. Leave a review \nChoose Option: ");
+	
+							int movieInput = sc.nextInt();
+	
+							switch (movieInput) {
+								case 1:
+									m.browseUpcoming();
+									break;
+								case 2:
+									m.browseCurrent();
+									break;
+								case 3:
+									m.leaveReview();
+									break;
+								case 4:
+									flag = false;
+									break;
+							}
 						}
-
-						System.exit(0);
 						break;
 
 					case 3:
@@ -82,23 +85,23 @@ public class Main {
 
 					case 2:
 						a.login();
-						System.out.println("\n1. Add movies \n2. Remove movies\n3. Add showtimes\n4. Remove showtimes\n5. Exit\nChoose Option");
-						int adminInput = sc.nextInt();
-						switch(adminInput) {
-							case 1:
-								ac.addShows();
-							case 2:
-								ac.removeShows();
-							case 3:
-								ac.addShowtimes();
-							case 4:
-								ac.removeShowtimes();
-							case 5: 
-								System.out.println("Terminating from the program!");
-								notexit = false;
-								break;
+						while(flag) {
+							System.out.println("\n1. Add movies \n2. Remove movies\n3. Add showtimes\n4. Remove showtimes\n5. Return to previous menu\nChoose Option");
+							int adminInput = sc.nextInt();
+							switch(adminInput) {
+								case 1:
+									ac.addShows();
+								case 2:
+									ac.removeShows();
+								case 3:
+									ac.addShowtimes();
+								case 4:
+									ac.removeShowtimes();
+								case 5: 
+									flag = false;
+									break;
+							}
 						}
-						System.exit(0);
 						break;
 						
 

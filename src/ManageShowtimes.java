@@ -13,10 +13,10 @@ import org.json.simple.parser.ParseException;
 public class ManageShowtimes {
 	Scanner sc = new Scanner(System.in);
 	String userInput, status;
-	String[] showtime;
 	boolean flag = true;
 	@SuppressWarnings("unchecked")
 	public void addShowtimes() throws FileNotFoundException, IOException, ParseException {
+		String[] showtime = new String[10];
 		System.out.println("What is the name of the movie for which you'd like to add showtimes");
 		userInput = sc.nextLine();
 		System.out.println("Is the movie current or upcoming?");
@@ -64,9 +64,7 @@ public class ManageShowtimes {
 			StringWriter out = new StringWriter();
 			movie.writeJSONString(out);
 			String movieTitle = out.toString();
-			if(movieTitle != userInput) {
-				temp.add(movies);
-			}else {
+			if(userInput.equals(movieTitle)) {
 				tempFinal.put("title", movie);
 				tempFinal.put("theaters", theaters);
 				tempFinal.put("numberOfSeats", numberOfSeats);
@@ -80,6 +78,8 @@ public class ManageShowtimes {
 				}
 				tempFinal.put("showtimes", showtimesTemp);
 				temp.add(tempFinal);
+			}else {
+				temp.add(movies);
 			}
 		}
 		finalObject.put(status, temp);
@@ -96,6 +96,7 @@ public class ManageShowtimes {
 	}
 	@SuppressWarnings("unchecked")
 	public void removeShowtimes() throws FileNotFoundException, IOException, ParseException {
+		String[] showtime = new String[10];
 		System.out.println("What is the name of the movie for which you'd like to remove showtimes");
 		userInput = sc.nextLine();
 		System.out.println("Is the movie current or upcoming?");
@@ -143,9 +144,7 @@ public class ManageShowtimes {
 			StringWriter out = new StringWriter();
 			movie.writeJSONString(out);
 			String movieTitle = out.toString();
-			if(movieTitle != userInput) {
-				temp.add(movies);
-			}else {
+			if(userInput.equals(movieTitle)) {
 				tempFinal.put("title", movie);
 				tempFinal.put("theaters", theaters);
 				tempFinal.put("numberOfSeats", numberOfSeats);
@@ -167,6 +166,8 @@ public class ManageShowtimes {
 				}
 				tempFinal.put("showtimes", showtimesTemp);
 				temp.add(tempFinal);
+			}else {
+				temp.add(movies);
 			}
 		}
 		finalObject.put(status, temp);

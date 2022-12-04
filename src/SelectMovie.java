@@ -41,7 +41,9 @@ public class SelectMovie {
                     // print prices
                     String prices = (String) movie.get("prices");
                     System.out.println("\nPrice: " + prices);
-
+                    //Take theaterLocation as input
+                    System.out.println("Please enter the theater location");
+                    String theaterLocation = sc.nextLine();
                     // ask user to select showtime of the movie
                     System.out.println("Please select your showtime");
                     String input_showtime = sc.next();
@@ -49,9 +51,11 @@ public class SelectMovie {
                     // ask user to select showtime of the movie
                     System.out.println("Please select the number of tickets you would like to purchase:");
                     int tickets = sc.nextInt();
-
+                    
+                    System.out.println("Payment Processing....");
+                    
                     int price = Integer.parseInt(prices);
-                    System.out.println("You have purchased " + tickets + " tickets for $" + (tickets * price));
+                    System.out.println("You have purchased " + tickets + " tickets for $" + (tickets * price) + " at the " + theaterLocation + " location.");
 
                     // generate random ticket number
                     int randomTicketNumber = rand.nextInt(100);
