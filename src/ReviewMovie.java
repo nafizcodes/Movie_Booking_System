@@ -5,6 +5,7 @@ import org.json.simple.parser.*;
 
 public class ReviewMovie {
     public void createNewReview() {
+    	boolean flag = false;
         System.out.println("\nPlease Enter the movie key you would like to review: ");
 
         Scanner sc = new Scanner(System.in);
@@ -20,23 +21,22 @@ public class ReviewMovie {
     	    JSONArray temp = new JSONArray();
     	    JSONObject finalObject = new JSONObject();
     	    finalObject.put("Upcoming", jsonObject.get("Upcoming"));
-    		for(int i = 0; i < jsonArray.size(); i++) {
-    			JSONObject movies = (JSONObject) jsonArray.get(i);
-    			JSONObject movie = (JSONObject) movies.get("title");
-    			JSONObject key = (JSONObject) movies.get("key");
+    	    Iterator currentIterator = jsonArray.iterator();
+    		while(currentIterator.hasNext()) {
+    			JSONObject movies = (JSONObject) currentIterator.next();
+    			System.out.println("Test");
+    			String movie = (String) movies.get("title");
+    			String key = (String) movies.get("key");
     			JSONArray showtimes = (JSONArray) movies.get("showtimes");
     			JSONArray theaters = (JSONArray) movies.get("theaters");
-    			JSONObject numberOfSeats = (JSONObject) movies.get("numberOfSeats");
-    			JSONObject synopsis = (JSONObject) movies.get("synopsis");
-    			JSONObject runtime = (JSONObject) movies.get("runtime");
-    			JSONObject price = (JSONObject) movies.get("price");
+    			String numberOfSeats = (String) movies.get("numberOfSeats");
+    			String synopsis = (String) movies.get("synopsis");
+    			String runtime = (String) movies.get("runtime");
+    			String price = (String) movies.get("price");
     			JSONArray review = (JSONArray) movies.get("reviews");
     			JSONArray castInfo = (JSONArray) movies.get("castInfo");
     			JSONObject tempFinal = new JSONObject();
     			JSONArray showtimesTemp = new JSONArray();
-    			StringWriter out = new StringWriter();
-    			key.writeJSONString(out);
-    			String movieTitle = out.toString();
     			if(input_movie.equals(key)) {
     				tempFinal.put("key" , key);
     				tempFinal.put("title", movie);
@@ -45,12 +45,14 @@ public class ReviewMovie {
     				tempFinal.put("synopsis", synopsis);
     				tempFinal.put("runtime", runtime);
     				tempFinal.put("price", price);
+    				tempFinal.put("showtimes", showtimes);
     				review.add(userReview);
     				tempFinal.put("review", review);
     				tempFinal.put("castInfo", castInfo);
     				tempFinal.put("showtimes", showtimesTemp);
     				temp.add(tempFinal);
     				temp.add(movies);
+    				flag = true;
     			}else {
     				temp.add(movies);
     			}
@@ -63,7 +65,11 @@ public class ReviewMovie {
     			e.printStackTrace();
     		}
     		fileToWrite.close();
-    		System.out.println("Review Added");
+    		if(flag == true) {
+    			System.out.println("Review Added");
+    		}else {
+    			System.out.println("Movie key not found. Please try again");
+    		}
     		sc.close();
         } catch (Exception e) {
             throw new IllegalArgumentException("Problem on reading JSON: ", e);

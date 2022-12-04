@@ -13,7 +13,7 @@ public class Main {
 		AdminControl ac = new AdminControl();
 
 		boolean notexit = true, flag = true;
-		int input = 0;
+		int movieInput = 4, adminInput = 5, input_int;
 		String choice;
 
 		System.out.print("\n\n");
@@ -29,7 +29,7 @@ public class Main {
 						"--------------------------Welcome to Customer's Portal-----------------------------------");
 				System.out.println("\n\n1.Create Account \n2.Login  \n3.Exit \nChoose Option: ");
 
-				int input_int = sc.nextInt();
+				input_int = sc.nextInt();
 
 				switch (input_int) {
 					case 1:
@@ -41,10 +41,8 @@ public class Main {
 						flag = true;
 						while(flag) {
 							System.out.println(
-									"\n\n1.Browse Upcoming Movies \n2.Browse Current Movies \n3.Return to previous menu\n4. Leave a review \nChoose Option: ");
-	
-							int movieInput = sc.nextInt();
-	
+									"\n\n1.Browse Upcoming Movies \n2.Browse Current Movies \n3.Leave a review\n4.Return to previous menu\nChoose Option: ");
+							movieInput = sc.nextInt();
 							switch (movieInput) {
 								case 1:
 									m.browseUpcoming();
@@ -76,7 +74,7 @@ public class Main {
 				System.out.println(
 						"--------------------------Welcome to Admin's Portal-----------------------------------");
 				System.out.println("\n\n1.Create Account \n2.Login  \n3.Exit \nChoose Option: ");
-				int input_int = sc.nextInt();
+				input_int = sc.nextInt();
 				//
 				switch (input_int) {
 					case 1:
@@ -87,16 +85,20 @@ public class Main {
 						a.login();
 						while(flag) {
 							System.out.println("\n1. Add movies \n2. Remove movies\n3. Add showtimes\n4. Remove showtimes\n5. Return to previous menu\nChoose Option");
-							int adminInput = sc.nextInt();
+							adminInput = sc.nextInt();
 							switch(adminInput) {
 								case 1:
 									ac.addShows();
+									break;
 								case 2:
 									ac.removeShows();
+									break;
 								case 3:
 									ac.addShowtimes();
+									break;
 								case 4:
 									ac.removeShowtimes();
+									break;
 								case 5: 
 									flag = false;
 									break;
@@ -117,6 +119,7 @@ public class Main {
 			}
 			
 		}
+		sc.close();
 		
 	}
 }
