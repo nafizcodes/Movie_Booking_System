@@ -11,20 +11,20 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 //import org.json.simple.*;
 public class ManageShowtimes {
-	String userInput, status;
+	String userInput, status, showtimes;
 	boolean flag = true;
 	@SuppressWarnings("unchecked")
 	public void addShowtimes() throws FileNotFoundException, IOException, ParseException {
 		Scanner sc = new Scanner(System.in);
 		String[] showtime = new String[10];
-		System.out.println("What is the name of the movie for which you'd like to add showtimes");
+		System.out.println("What is the key of the movie for which you'd like to add showtimes");
 		userInput = sc.nextLine();
 		System.out.println("Is the movie current or upcoming?");
 		status = sc.nextLine();
 		int n = 0;
 		while(flag) {
 			System.out.println("Please enter the showtimes you'd like to create (type exit when finished)");
-			userInput = sc.nextLine();
+			showtimes = sc.nextLine();
 			switch(userInput) {
 				case "exit":
 					flag = false;
@@ -64,7 +64,7 @@ public class ManageShowtimes {
 			JSONArray castInfo = (JSONArray) movies.get("castInfo");
 			JSONObject tempFinal = new JSONObject();
 			JSONArray showtimesTemp = new JSONArray();
-			if(userInput.equals(movie)) {
+			if(userInput.equals(key)) {
 				tempFinal.put("title", movie);
 				tempFinal.put("key" , key);
 				tempFinal.put("theaters", theaters);
@@ -104,12 +104,12 @@ public class ManageShowtimes {
 		int n = 0;
 		while(flag) {
 			System.out.println("Please enter the showtimes you'd like to remove (type exit when finished)");
-			userInput = sc.nextLine();
-			switch(userInput) {
+			showtimes = sc.nextLine();
+			switch(showtimes) {
 				case "exit":
 					flag = false;
 				default:
-					showtime[n] = userInput;
+					showtime[n] = showtimes;
 					n++;
 			}
 		}
@@ -144,7 +144,7 @@ public class ManageShowtimes {
 			JSONArray castInfo = (JSONArray) movies.get("castInfo");
 			JSONObject tempFinal = new JSONObject();
 			JSONArray showtimesTemp = new JSONArray();
-			if(userInput.equals(movie)) {
+			if(userInput.equals(key)) {
 				tempFinal.put("key" , key);
 				tempFinal.put("title", movie);
 				tempFinal.put("theaters", theaters);

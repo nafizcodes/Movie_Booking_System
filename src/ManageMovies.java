@@ -3,8 +3,10 @@ import java.util.*;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 public class ManageMovies{
-	String title, status, numberOfSeats, synopsis, runtime, prices;
+	String key, title, status, numberOfSeats, synopsis, runtime, prices;
 	boolean flag = true;
 	String choice = "";
 	@SuppressWarnings("unchecked")
@@ -130,25 +132,24 @@ public class ManageMovies{
 			z++;
 		}
 		newObject.put("castInfo", castInfos);
-		StringWriter out = new StringWriter();
-		newObject.writeJSONString(out);
-		String jsonText = out.toString();
 		jsonArray.add(newObject);
 		finalObject.put(status, jsonArray);
+
 		FileWriter fileToWrite = new FileWriter("src/movies.json", false);
 		try {
 			fileToWrite.write(finalObject.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		fileToWrite.flush();
 		fileToWrite.close();
 		System.out.println("Movie information added to database");
 	}
 	@SuppressWarnings("unchecked")
 	public void removeShows() throws FileNotFoundException, IOException, ParseException {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Would movie would you like to remove?");
-		title = sc.nextLine();
+		System.out.println("What is the movie key you like to remove?");
+		key = sc.nextLine();
 		System.out.println("What is the current status of the movie?");
 		status = sc.nextLine();
 		JSONParser parser = new JSONParser();
@@ -170,8 +171,8 @@ public class ManageMovies{
 	    Iterator currentIterator = jsonArray.iterator();
 		while(currentIterator.hasNext()) {
 			JSONObject movies = (JSONObject) currentIterator.next();
-			String movie = (String) movies.get("title");
-			if(movie.equals(title)) {
+			String movie = (String) movies.get("key");
+			if(movie.equals(key)) {
 				continue;
 			}else {
 				temp.add(movies);
@@ -186,7 +187,6 @@ public class ManageMovies{
 		}
 		fileToWrite.close();
 		System.out.println("Movie removed from catalog");
-		sc.close();
 	}
 	
 }

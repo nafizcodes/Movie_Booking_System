@@ -27,7 +27,11 @@ public class Checker {
         return str.chars().anyMatch(predicate);
     }
 
-    public static boolean checkCard(long cardnumber) {
+    public static boolean checkCard(String cardnumber) {
         return !(String.valueOf(cardnumber).length() == 8); // assuming credit card number is 8digit
+    }
+    
+    public static boolean checkPhone(String phone) {
+        return !(String.valueOf(phone).length() == 10); // assuming credit card number is 8digit
     }
 }

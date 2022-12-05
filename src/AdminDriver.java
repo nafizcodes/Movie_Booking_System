@@ -17,47 +17,43 @@ public class AdminDriver {
 
     Scanner sc = new Scanner(System.in);
     
-    public void storeInfo() {
-    	String outputFilePath = "src/write.txt";
-  
-        // new file object
-        File file = new File(outputFilePath);
-  
-        BufferedWriter bf = null;
-  
-        try {
-  
-            // create new BufferedWriter for the output file
-            bf = new BufferedWriter(new FileWriter(file));
-  
-            // iterate map entries
-            for (Map.Entry<String, Admin> entry :
-                 admins.entrySet()) {
-  
-                // put key and value separated by a colon
-                bf.write(entry.getKey() + ":"
-                         + entry.getValue());
-  
-                // new line
-                bf.newLine();
-            }
-  
-            bf.flush();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-  
-            try {
-  
-                // always close the writer
-                bf.close();
-            }
-            catch (Exception e) {
-            }
-        }
-    
+    public void storeInfo() throws IOException {
+	    FileWriter fw = null;
+		
+	    try {
+	        fw = new FileWriter("src/userDetails.txt", false);
+	        for(Map.Entry<String, Admin> entry : admins.entrySet()) {
+	        	fw.write(entry.getKey() + ":" + entry.getValue() + "\n");
+	        }
+	        System.out.println("Data Successfully appended into file");
+	
+	    } finally {
+	        try {
+	            fw.close();
+	        } catch (IOException io) {// can't do anything }
+	        }
+	
+	    }
+    }
+    public void checkData() throws IOException {
+    	BufferedReader br = null;
+    	File file = new File("src/userDetails.txt");
+    	br = new BufferedReader(new FileReader(file));
+    	String line = null;
+    	while((line = br.readLine())!= null) {
+    		String[] parts = line.split(":");   	
+    		String username = parts[0].trim();
+    		String adminDetails = parts[1].trim();
+    		String[] details = adminDetails.split(",");
+    		String password = details[0].trim();
+    		String securityQ = details[1].trim();
+    		String securityA = details[2].trim();
+    		String name = details[3].trim();
+    		String address = details[4].trim();
+    		admin = new Admin(username, password, securityQ, securityA, name, address);
+    		admins.put(username, admin);
+    	}
+    	br.close();
     }
     public void printitem() {
         System.out.println(admins);
@@ -108,7 +104,7 @@ public class AdminDriver {
         // Confirmation
 
         System.out.println("\n***************************************************************************************"
-                + admin.toString() +
+                + admin.printString() +
                 "\n***************************************************************************************\n" +
                 "\nPlease confirm the above information to Create the account" +
                 "\nTo confirm press (y/n):");
@@ -123,6 +119,7 @@ public class AdminDriver {
     }
 
     public Admin login() { // login
+    	
         String email;
         String password;
 
