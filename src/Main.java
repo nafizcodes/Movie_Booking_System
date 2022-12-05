@@ -15,7 +15,6 @@ public class Main {
 		boolean notexit = true, flag = true;
 		int movieInput, input_int, adminInput;
 		String choice;
-
 		System.out.print("\n\n");
 		System.out.println("Welcome to Movie Booking System ");
 		System.out.println(
@@ -34,6 +33,7 @@ public class Main {
 				switch (input_int) {
 					case 1:
 						c.create();
+						c.printCustomer();
 						break;
 
 					case 2:
@@ -78,6 +78,7 @@ public class Main {
 				switch (input_int) {
 					case 1:
 						a.create();
+						a.storeInfo();
 						break;
 
 					case 2:

@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.io.*;
 public class AdminDriver {
 
     private static final Map<String, Admin> admins = new HashMap<>(); // User storage - <User ID - User Object>
@@ -16,7 +16,49 @@ public class AdminDriver {
     };
 
     Scanner sc = new Scanner(System.in);
-
+    
+    public void storeInfo() {
+    	String outputFilePath = "src/write.txt";
+  
+        // new file object
+        File file = new File(outputFilePath);
+  
+        BufferedWriter bf = null;
+  
+        try {
+  
+            // create new BufferedWriter for the output file
+            bf = new BufferedWriter(new FileWriter(file));
+  
+            // iterate map entries
+            for (Map.Entry<String, Admin> entry :
+                 admins.entrySet()) {
+  
+                // put key and value separated by a colon
+                bf.write(entry.getKey() + ":"
+                         + entry.getValue());
+  
+                // new line
+                bf.newLine();
+            }
+  
+            bf.flush();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+  
+            try {
+  
+                // always close the writer
+                bf.close();
+            }
+            catch (Exception e) {
+            }
+        }
+    
+    }
     public void printitem() {
         System.out.println(admins);
     }
