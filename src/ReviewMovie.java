@@ -9,7 +9,7 @@ public class ReviewMovie {
         System.out.println("\nPlease Enter the movie key you would like to review: ");
 
         Scanner sc = new Scanner(System.in);
-        String input_movie = sc.next();
+        String input_movie = sc.nextLine();
         
         System.out.println("Please write your review below (click enter when done)");
         String userReview = sc.nextLine();
@@ -24,7 +24,6 @@ public class ReviewMovie {
     	    Iterator currentIterator = jsonArray.iterator();
     		while(currentIterator.hasNext()) {
     			JSONObject movies = (JSONObject) currentIterator.next();
-    			System.out.println("Test");
     			String movie = (String) movies.get("title");
     			String key = (String) movies.get("key");
     			JSONArray showtimes = (JSONArray) movies.get("showtimes");
@@ -58,6 +57,9 @@ public class ReviewMovie {
     			}
     		}
     		finalObject.put("Current", temp);
+    		StringWriter out = new StringWriter();
+    		finalObject.writeJSONString(out);
+    		String output = out.toString();
     		FileWriter fileToWrite = new FileWriter("src/movies.json", false);
     		try {
     			fileToWrite.write(finalObject.toJSONString());
@@ -70,7 +72,6 @@ public class ReviewMovie {
     		}else {
     			System.out.println("Movie key not found. Please try again");
     		}
-    		sc.close();
         } catch (Exception e) {
             throw new IllegalArgumentException("Problem on reading JSON: ", e);
         }
