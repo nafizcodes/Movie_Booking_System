@@ -5,20 +5,23 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 public class ManageMovies{
 	String title, status, numberOfSeats, synopsis, runtime, prices;
-	String[] showtimes, theater, reviews, castInfo, titleOfMovies;
 	boolean flag = true;
 	String choice = "";
 	@SuppressWarnings("unchecked")
 	public void addShows() throws FileNotFoundException, IOException, ParseException {
-		Scanner sc = new Scanner(System.in);
+		String[] showtimes = new String[10]; 
+		String[] theater = new String[10]; 
+		String[] reviews = new String[10]; 
+		String[] castInfo = new String[10]; 
+		Scanner tempScan = new Scanner(System.in);
 		System.out.println("What movie would you like to add?");
-		title = sc.nextLine();
+		title = tempScan.nextLine();
 		System.out.println("Current or Upcoming?");
-		status = sc.nextLine();
+		status = tempScan.nextLine();
 		int i = 0;
 		while(flag) {
 			System.out.println("Enter showtimes (type exit to stop)");
-			choice = sc.nextLine();
+			choice = tempScan.nextLine();
 			switch(choice) {
 					case "exit":
 						flag = false;
@@ -31,29 +34,28 @@ public class ManageMovies{
 		int j = 0;
 		while(flag) {
 			System.out.println("Add theaters (type exit when finished)");
-			choice = sc.nextLine();
+			choice = tempScan.nextLine();
 			switch(choice) {
 				case "exit":
 					flag = false;
-					System.out.println("Working");
 				default:
 					theater[j] = choice;
 					j++;
 			}
 		}
 		System.out.println("Add number of seats");
-		numberOfSeats = sc.nextLine();
+		numberOfSeats = tempScan.nextLine();
 		System.out.println("Add synopsis");
-		synopsis = sc.nextLine();
+		synopsis = tempScan.nextLine();
 		System.out.println("Add runtime");
-		runtime = sc.nextLine();
+		runtime = tempScan.nextLine();
 		System.out.println("Add price");
-		prices = sc.nextLine();
+		prices = tempScan.nextLine();
 		flag = true;
 		int k = 0;
 		while(flag) {
 			System.out.println("Add reviews (type exit when finished)");
-			choice = sc.nextLine();
+			choice = tempScan.nextLine();
 			switch(choice) {
 				case "exit":
 					flag = false;
@@ -66,7 +68,7 @@ public class ManageMovies{
 		int n = 0;
 		while(flag) {
 			System.out.println("Add cast information (type exit when finished");
-			choice = sc.nextLine();
+			choice = tempScan.nextLine();
 			switch(choice) {
 				case "exit": 
 					flag = false;
@@ -81,6 +83,7 @@ public class ManageMovies{
 	    JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("Src/movies.json"));
 	    JSONArray jsonArray = (JSONArray) jsonObject.get(status);
 	    JSONObject finalObject = new JSONObject();
+	    int key = jsonArray.size();
 	    if(status == "Current") {
 	    	status = "Upcoming";
 	    }else {
@@ -94,6 +97,7 @@ public class ManageMovies{
 	    }
 		JSONObject newObject = new JSONObject();
 		newObject.put("title", title);	
+		newObject.put("key", key);
 		JSONArray showtime = new JSONArray();
 		int z = 0;
 		while(z < i - 1) {
@@ -129,7 +133,6 @@ public class ManageMovies{
 		StringWriter out = new StringWriter();
 		newObject.writeJSONString(out);
 		String jsonText = out.toString();
-		System.out.println(jsonText);
 		jsonArray.add(newObject);
 		finalObject.put(status, jsonArray);
 		FileWriter fileToWrite = new FileWriter("src/movies.json", false);
@@ -139,18 +142,16 @@ public class ManageMovies{
 			e.printStackTrace();
 		}
 		fileToWrite.close();
-		System.out.println("All finished");
-		sc.close();
-		
-		
+		System.out.println("Movie information added to database");
+		tempScan.close();
 	}
 	@SuppressWarnings("unchecked")
 	public void removeShows() throws FileNotFoundException, IOException, ParseException {
-		Scanner sc = new Scanner(System.in);
+		Scanner tempScan = new Scanner(System.in);
 		System.out.println("Would movie would you like to remove?");
-		title = sc.nextLine();
+		title = tempScan.nextLine();
 		System.out.println("What is the current status of the movie?");
-		status = sc.nextLine();
+		status = tempScan.nextLine();
 		JSONParser parser = new JSONParser();
 	    JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("Src/movies.json"));
 	    JSONArray jsonArray = (JSONArray) jsonObject.get(status);
@@ -167,13 +168,13 @@ public class ManageMovies{
 	    }else {
 	    	status = "Current";
 	    }
-		for(int i = 0; i < jsonArray.size(); i++) {
-			JSONObject movies = (JSONObject) jsonArray.get(i);
-			JSONObject movie = (JSONObject) movies.get("title");
-			StringWriter out = new StringWriter();
-			movie.writeJSONString(out);
-			String movieTitle = out.toString();
-			if(movieTitle != title) {
+	    Iterator currentIterator = jsonArray.iterator();
+		while(currentIterator.hasNext()) {
+			JSONObject movies = (JSONObject) currentIterator.next();
+			String movie = (String) movies.get("title");
+			if(movie.equals(title)) {
+				continue;
+			}else {
 				temp.add(movies);
 			}
 		}
@@ -186,7 +187,7 @@ public class ManageMovies{
 		}
 		fileToWrite.close();
 		System.out.println("Movie removed from catalog");
-		sc.close();
+		tempScan.close();
 	}
 	
 }
