@@ -13,15 +13,15 @@ public class ManageMovies{
 		String[] theater = new String[10]; 
 		String[] reviews = new String[10]; 
 		String[] castInfo = new String[10]; 
-		Scanner tempScan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		System.out.println("What movie would you like to add?");
-		title = tempScan.nextLine();
+		title = sc.nextLine();
 		System.out.println("Current or Upcoming?");
-		status = tempScan.nextLine();
+		status = sc.nextLine();
 		int i = 0;
 		while(flag) {
 			System.out.println("Enter showtimes (type exit to stop)");
-			choice = tempScan.nextLine();
+			choice = sc.nextLine();
 			switch(choice) {
 					case "exit":
 						flag = false;
@@ -34,7 +34,7 @@ public class ManageMovies{
 		int j = 0;
 		while(flag) {
 			System.out.println("Add theaters (type exit when finished)");
-			choice = tempScan.nextLine();
+			choice = sc.nextLine();
 			switch(choice) {
 				case "exit":
 					flag = false;
@@ -44,18 +44,18 @@ public class ManageMovies{
 			}
 		}
 		System.out.println("Add number of seats");
-		numberOfSeats = tempScan.nextLine();
+		numberOfSeats = sc.nextLine();
 		System.out.println("Add synopsis");
-		synopsis = tempScan.nextLine();
+		synopsis = sc.nextLine();
 		System.out.println("Add runtime");
-		runtime = tempScan.nextLine();
+		runtime = sc.nextLine();
 		System.out.println("Add price");
-		prices = tempScan.nextLine();
+		prices = sc.nextLine();
 		flag = true;
 		int k = 0;
 		while(flag) {
 			System.out.println("Add reviews (type exit when finished)");
-			choice = tempScan.nextLine();
+			choice = sc.nextLine();
 			switch(choice) {
 				case "exit":
 					flag = false;
@@ -68,7 +68,7 @@ public class ManageMovies{
 		int n = 0;
 		while(flag) {
 			System.out.println("Add cast information (type exit when finished");
-			choice = tempScan.nextLine();
+			choice = sc.nextLine();
 			switch(choice) {
 				case "exit": 
 					flag = false;
@@ -143,15 +143,14 @@ public class ManageMovies{
 		}
 		fileToWrite.close();
 		System.out.println("Movie information added to database");
-		tempScan.close();
 	}
 	@SuppressWarnings("unchecked")
 	public void removeShows() throws FileNotFoundException, IOException, ParseException {
-		Scanner tempScan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Would movie would you like to remove?");
-		title = tempScan.nextLine();
+		title = sc.nextLine();
 		System.out.println("What is the current status of the movie?");
-		status = tempScan.nextLine();
+		status = sc.nextLine();
 		JSONParser parser = new JSONParser();
 	    JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("Src/movies.json"));
 	    JSONArray jsonArray = (JSONArray) jsonObject.get(status);
@@ -187,7 +186,7 @@ public class ManageMovies{
 		}
 		fileToWrite.close();
 		System.out.println("Movie removed from catalog");
-		tempScan.close();
+		sc.close();
 	}
 	
 }

@@ -15,16 +15,16 @@ public class ManageShowtimes {
 	boolean flag = true;
 	@SuppressWarnings("unchecked")
 	public void addShowtimes() throws FileNotFoundException, IOException, ParseException {
-		Scanner tempScan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		String[] showtime = new String[10];
 		System.out.println("What is the name of the movie for which you'd like to add showtimes");
-		userInput = tempScan.nextLine();
+		userInput = sc.nextLine();
 		System.out.println("Is the movie current or upcoming?");
-		status = tempScan.nextLine();
+		status = sc.nextLine();
 		int n = 0;
 		while(flag) {
 			System.out.println("Please enter the showtimes you'd like to create (type exit when finished)");
-			userInput = tempScan.nextLine();
+			userInput = sc.nextLine();
 			switch(userInput) {
 				case "exit":
 					flag = false;
@@ -92,20 +92,19 @@ public class ManageShowtimes {
 		}
 		fileToWrite.close();
 		System.out.println("Showtimes Added");  
-		tempScan.close();
 	}
 	@SuppressWarnings("unchecked")
 	public void removeShowtimes() throws FileNotFoundException, IOException, ParseException {
-		Scanner tempScan = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 		String[] showtime = new String[10];
 		System.out.println("What is the name of the movie for which you'd like to remove showtimes");
-		userInput = tempScan.nextLine();
+		userInput = sc.nextLine();
 		System.out.println("Is the movie current or upcoming?");
-		status = tempScan.nextLine();
+		status = sc.nextLine();
 		int n = 0;
 		while(flag) {
 			System.out.println("Please enter the showtimes you'd like to remove (type exit when finished)");
-			userInput = tempScan.nextLine();
+			userInput = sc.nextLine();
 			switch(userInput) {
 				case "exit":
 					flag = false;
@@ -181,6 +180,5 @@ public class ManageShowtimes {
 		}
 		fileToWrite.close();
 		System.out.println("Showtimes removed from database");
-		tempScan.close();
 	}
 }

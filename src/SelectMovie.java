@@ -6,7 +6,6 @@ import org.json.simple.parser.*;
 public class SelectMovie {
     public void selectMovie() {
         System.out.println("\nPlease Enter the movie key you would like to see: ");
-
         Scanner sc = new Scanner(System.in);
         String input_movie = sc.next();
 

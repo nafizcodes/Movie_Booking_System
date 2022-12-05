@@ -13,7 +13,7 @@ public class Main {
 		AdminControl ac = new AdminControl();
 
 		boolean notexit = true, flag = true;
-		int movieInput = 4, adminInput = 5, input_int;
+		int movieInput, input_int, adminInput;
 		String choice;
 
 		System.out.print("\n\n");
@@ -48,10 +48,10 @@ public class Main {
 									m.browseUpcoming();
 									break;
 								case 2:
-									m.browseCurrent();
+									m.browseCurrent("Buy");
 									break;
 								case 3:
-									m.leaveReview();
+									m.browseCurrent("Review");
 									break;
 								case 4:
 									flag = false;
@@ -75,7 +75,6 @@ public class Main {
 						"--------------------------Welcome to Admin's Portal-----------------------------------");
 				System.out.println("\n\n1.Create Account \n2.Login  \n3.Exit \nChoose Option: ");
 				input_int = sc.nextInt();
-				//
 				switch (input_int) {
 					case 1:
 						a.create();
@@ -83,8 +82,9 @@ public class Main {
 
 					case 2:
 						a.login();
+						flag = true;
 						while(flag) {
-							System.out.println("\n1. Add movies \n2. Remove movies\n3. Add showtimes\n4. Remove showtimes\n5. Return to previous menu\nChoose Option");
+							System.out.println("\n1. Add movies \n2. Remove movies\n3. Add showtimes\n4. Remove showtimes\n5.View Current Movies\n6.View Upcoming Movies\n7. Return to previous menu\nChoose Option");
 							adminInput = sc.nextInt();
 							switch(adminInput) {
 								case 1:
@@ -99,7 +99,13 @@ public class Main {
 								case 4:
 									ac.removeShowtimes();
 									break;
-								case 5: 
+								case 5:
+									m.browseCurrent("Admin");
+									break;
+								case 6:
+									m.browseUpcoming();
+									break;
+								case 7: 
 									flag = false;
 									break;
 							}
