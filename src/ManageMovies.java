@@ -98,7 +98,7 @@ public class ManageMovies{
 	    }
 		JSONObject newObject = new JSONObject();
 		newObject.put("title", title);	
-		newObject.put("key", key);
+		newObject.put("status", status);
 		JSONArray showtime = new JSONArray();
 		int z = 0;
 		while(z < i - 1) {
@@ -116,7 +116,7 @@ public class ManageMovies{
 		newObject.put("numberOfSeats", numberOfSeats);
 		newObject.put("synopsis", synopsis);
 		newObject.put("runtime", runtime);
-		newObject.put("price", prices);
+		newObject.put("prices", prices);
 		JSONArray review = new JSONArray();
 		z = 0;
 		while(z < k - 1) {
@@ -145,7 +145,7 @@ public class ManageMovies{
 		System.out.println("Movie information added to database");
 	}
 	@SuppressWarnings("unchecked")
-	public void removeShows() throws FileNotFoundException, IOException, ParseException {
+	public void removeShows() throws FileNotFoundException, IOException, ParseException{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("What is the movie key you'd like to remove?");
 		key = sc.nextLine();
@@ -170,8 +170,8 @@ public class ManageMovies{
 	    Iterator currentIterator = jsonArray.iterator();
 		while(currentIterator.hasNext()) {
 			JSONObject movies = (JSONObject) currentIterator.next();
-			String movie = (String) movies.get("key");
-			if(movie.equals(key)) {
+			String movie = (String) movies.get("title");
+			if(movie.equals(title)) {
 				continue;
 			}else {
 				temp.add(movies);
@@ -188,5 +188,4 @@ public class ManageMovies{
 		fileToWrite.close();
 		System.out.println("Movie removed from catalog");
 	}
-	
 }

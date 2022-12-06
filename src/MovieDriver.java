@@ -27,8 +27,8 @@ public class MovieDriver {
                         "***************************************************************************************");
                         
                 // print movie #
-                String key = (String) movie.get("key");
-                System.out.println("Movie #" + key);
+             /*   String key = (String) movie.get("key");
+                System.out.println("Movie #" + key);*/
 
                 // print title
                 String title = (String) movie.get("title");
@@ -114,8 +114,8 @@ public class MovieDriver {
                         "***************************************************************************************");
                         
                 // print movie #
-                String key = (String) movie.get("key");
-                System.out.println("Movie #" + key);
+               /* String key = (String) movie.get("key");
+                System.out.println("Movie #" + key);*/
 
                 // print title
                 String title = (String) movie.get("title");

@@ -11,7 +11,7 @@ public class SelectMovie {
         String input_movie = sc.nextLine();
 
         Random rand = new Random();
-
+        boolean found = false;
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader("src/movies.json"));
@@ -23,13 +23,12 @@ public class SelectMovie {
             while (currentIterator.hasNext()) {
 
                 JSONObject movie = (JSONObject) currentIterator.next();
-                String key = (String) movie.get("key");
+                String title = (String) movie.get("title");
 
-                if (input_movie.equals(key)) {
+                if (input_movie.equals(title)) {
                     // print title
-                    String title = (String) movie.get("title");
                     System.out.println("\nTitle: " + title);
-
+                    found = true;
                     // print showtimes
                     JSONArray showtimes = (JSONArray) movie.get("showtimes");
                     System.out.println("\nShowtimes:");
@@ -59,19 +58,27 @@ public class SelectMovie {
 	                    	flag = false;
 	                    }
                     }
-                    System.out.println("Payment Processing....");
+                    System.out.println("\t\t\t\t\t\t\t Payment Processing....");
                     
                     int price = Integer.parseInt(prices);
                     System.out.println("You have purchased " + tickets + " tickets for $" + (tickets * price) + " at the " + theaterLocation + " location.");
 
                     // generate random ticket number
-                    int randomTicketNumber = rand.nextInt(100);
-                    System.out.println("Your ticket number is: " + randomTicketNumber);
-                    break;
-                } else {
-                    System.out.println("Movie not found.");
+                    
+                    int n = 0;
+                    System.out.println("Your ticket numbers are:");
+                    while (n < tickets) {
+                    	int randomTicketNumber = rand.nextInt(100);
+                    	System.out.println("#"+ (n+1) +" ticket number is " +  randomTicketNumber);
+                    n += 1;
+                    }break;
                 }
             }
+            
+            
+           if (found == false) {
+        	   System.out.println("Movie not found");
+           }
         } catch (Exception e) {
             throw new IllegalArgumentException("Problem on reading JSON: ", e);
         }

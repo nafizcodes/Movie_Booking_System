@@ -6,7 +6,7 @@ import org.json.simple.parser.*;
 public class ReviewMovie {
     public void createNewReview() {
     	boolean flag = false;
-        System.out.println("\nPlease Enter the movie key you would like to review: ");
+        System.out.println("\nPlease enter the movie you would like to review: ");
 
         Scanner sc = new Scanner(System.in);
         String input_movie = sc.nextLine();
@@ -25,7 +25,6 @@ public class ReviewMovie {
     		while(currentIterator.hasNext()) {
     			JSONObject movies = (JSONObject) currentIterator.next();
     			String movie = (String) movies.get("title");
-    			String key = (String) movies.get("key");
     			JSONArray showtimes = (JSONArray) movies.get("showtimes");
     			JSONArray theaters = (JSONArray) movies.get("theaters");
     			String numberOfSeats = (String) movies.get("numberOfSeats");
@@ -36,8 +35,7 @@ public class ReviewMovie {
     			JSONArray castInfo = (JSONArray) movies.get("castInfo");
     			JSONObject tempFinal = new JSONObject();
     			JSONArray showtimesTemp = new JSONArray();
-    			if(input_movie.equals(key)) {
-    				tempFinal.put("key" , key);
+    			if(input_movie.equals(movie)) {
     				tempFinal.put("title", movie);
     				tempFinal.put("theaters", theaters);
     				tempFinal.put("numberOfSeats", numberOfSeats);
