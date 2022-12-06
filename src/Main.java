@@ -32,11 +32,13 @@ public class Main {
 
 				switch (input_int) {
 					case 1:
+						c.checkData();
 						c.create();
-						c.printCustomer();
+						c.storeInfo();
 						break;
 
 					case 2:
+						c.checkData();
 						c.login();
 						flag = true;
 						while(flag) {
@@ -77,11 +79,13 @@ public class Main {
 				input_int = sc.nextInt();
 				switch (input_int) {
 					case 1:
+						a.checkData();
 						a.create();
 						a.storeInfo();
 						break;
 
 					case 2:
+						a.checkData();
 						a.login();
 						flag = true;
 						while(flag) {

@@ -81,12 +81,14 @@ public class Admin {
 
     @Override
     public String toString() {
-       /* return "\nEmail: " + email +
-                "\nPassword:" + password +
-                "\nSecurity question: " + question +
-                "\nAnswer: " + answer +
-                "\nName: " + name +
-                "\nAddress: " + address;*/
     	return password + "," + question + "," + answer + "," + name + ","  + address;
+    }
+    public String printString() {
+    	return "\nEmail: " + email +
+        "\nPassword:" + password +
+        "\nSecurity question: " + question +
+        "\nAnswer: " + answer +
+        "\nName: " + name +
+        "\nAddress: " + address;
     }
 }

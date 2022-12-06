@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class CustomerDriver {
@@ -16,7 +23,47 @@ public class CustomerDriver {
     };
 
     Scanner sc = new Scanner(System.in);
-
+    public void storeInfo() throws IOException {
+	    FileWriter fw = null;
+	
+	    try {
+	        fw = new FileWriter("src/customerDetails.txt", false);
+	        for(Map.Entry<String, Customer> entry : customers.entrySet()) {
+	        	fw.write(entry.getKey() + ":" + entry.getValue() + "\n");
+	        }
+	        System.out.println("Data Successfully appended into file");
+	
+	    } finally {
+	        try {
+	            fw.close();
+	        } catch (IOException io) {// can't do anything }
+	        }
+	
+	    }
+    }
+    public void checkData() throws IOException {
+    	BufferedReader br = null;
+    	File file = new File("src/customerDetails.txt");
+    	br = new BufferedReader(new FileReader(file));
+    	String line = null;
+    	while((line = br.readLine())!= null) {
+    		String[] parts = line.split(":");   	
+    		String username = parts[0].trim();
+    		String adminDetails = parts[1].trim();
+    		String[] details = adminDetails.split(",");
+    		String password = details[0].trim();
+    		String securityQ = details[1].trim();
+    		String securityA = details[2].trim();
+    		String name = details[3].trim();
+    		String address = details[4].trim();
+    		String cardNumber = details[5].trim();
+    		String phone = details[6].trim();
+    		
+    		customer = new Customer(username, password, securityQ, securityA, name, address, cardNumber, phone);
+    		customers.put(username, customer);
+    	}
+    	br.close();
+    }
     public void printitem() {
         System.out.println(customers);
     }
@@ -36,9 +83,10 @@ public class CustomerDriver {
         String password = null;
         String name;
         String address;
-        long creditCardNumber = 0;
+        String creditCardNumber = null;
         String securityQuestion;
         String answer;
+        String phone = null;
 
         // ID handling
         email = enterEmail();
@@ -65,16 +113,21 @@ public class CustomerDriver {
                 System.out.println("Invalid Cardnumber.");
             }
         }
-
+        while (Checker.checkPhone(phone)) { // Assuming the cardnumber is 8digit
+            phone = enterPhone();
+            if (Checker.checkPhone(phone)) {
+                System.out.println("Invalid Phone Number.");
+            }
+        }
         securityQuestion = selectSecurityQuestion();
         answer = enterSecurityQuestionAnswer();
 
-        customer = new Customer(email, password, securityQuestion, answer, name, address, creditCardNumber);
+        customer = new Customer(email, password, securityQuestion, answer, name, address, creditCardNumber, phone);
 
         // Confirmation
 
         System.out.println("\n***************************************************************************************"
-                + customer.toString() +
+                + customer.printString() +
                 "\n***************************************************************************************\n" +
                 "\nPlease confirm the above information to Create the account" +
                 "\nTo confirm press (y/n):");
@@ -176,14 +229,19 @@ public class CustomerDriver {
         return input_add;
     }
 
-    private long enterCreditCardNumber() {
+    private String enterCreditCardNumber() {
         System.out.println("Enter your credit card number(8 digit): ");
-        long input_card = sc.nextLong();
+        String input_card = sc.next();
         return input_card;
     }
 
     private String enterSecurityQuestionAnswer() {
         System.out.println("Enter the answer: ");
+        String input_ans = sc.next();
+        return input_ans;
+    }
+    private String enterPhone() {
+        System.out.println("Enter phone number (10 digit): ");
         String input_ans = sc.next();
         return input_ans;
     }
