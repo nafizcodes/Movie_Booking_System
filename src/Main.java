@@ -93,26 +93,26 @@ public class Main {
 						while(flag) {
 							System.out.println(
 									"--------------------------Welcome to Admin Menu-----------------------------------");
-							System.out.println("\n1. Add movies \n2. Remove movies\n3. Add showtimes\n4. Remove showtimes\n5. View Current Movies\n6. View Upcoming Movies\n7. Log Out\nChoose Option");
+							System.out.println("1. View Current Movies\\n2. View Upcoming Movies\n3. Add movies \n4. Remove movies\n5. Add showtimes\n6. Remove showtimes\n7. Log Out\nChoose Option");
 							adminInput = sc.nextInt();
 							switch(adminInput) {
 								case 1:
-									ac.addShows();
-									break;
-								case 2:
-									ac.removeShows();
-									break;
-								case 3:
-									ac.addShowtimes();
-									break;
-								case 4:
-									ac.removeShowtimes();
-									break;
-								case 5:
 									m.browseCurrent("Admin");
 									break;
-								case 6:
+								case 2:
 									m.browseUpcoming();
+									break;
+								case 3:
+									ac.addShows();
+									break;
+								case 4:
+									ac.removeShows();
+									break;
+								case 5:
+									ac.addShowtimes();
+									break;
+								case 6:
+									ac.removeShowtimes();
 									break;
 								case 7: 
 									flag = false;

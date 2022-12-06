@@ -17,7 +17,7 @@ public class ManageShowtimes {
 	public void addShowtimes() throws FileNotFoundException, IOException, ParseException {
 		Scanner sc = new Scanner(System.in);
 		String[] showtime = new String[10];
-		System.out.println("What is the key of the movie for which you'd like to add showtimes?");
+		System.out.println("What is the movie for which you'd like to add showtimes?");
 		userInput = sc.nextLine();
 		System.out.println("Is the movie current or upcoming?");
 		status = sc.nextLine();
@@ -25,7 +25,7 @@ public class ManageShowtimes {
 		while(flag) {
 			System.out.println("Please enter the showtimes you'd like to create (type exit when finished)");
 			showtimes = sc.nextLine();
-			switch(userInput) {
+			switch(showtimes) {
 				case "exit":
 					flag = false;
 				default:
@@ -53,7 +53,6 @@ public class ManageShowtimes {
 		while(currentIterator.hasNext()) {
 			JSONObject movies = (JSONObject) currentIterator.next();
 			String movie = (String ) movies.get("title");
-			String key = (String) movies.get("key");
 			JSONArray showtimes = (JSONArray) movies.get("showtimes");
 			JSONArray theaters = (JSONArray) movies.get("theaters");
 			String  numberOfSeats = (String ) movies.get("numberOfSeats");
@@ -64,9 +63,8 @@ public class ManageShowtimes {
 			JSONArray castInfo = (JSONArray) movies.get("castInfo");
 			JSONObject tempFinal = new JSONObject();
 			JSONArray showtimesTemp = new JSONArray();
-			if(userInput.equals(key)) {
+			if(userInput.equals(movie)) {
 				tempFinal.put("title", movie);
-				tempFinal.put("key" , key);
 				tempFinal.put("theaters", theaters);
 				tempFinal.put("numberOfSeats", numberOfSeats);
 				tempFinal.put("synopsis", synopsis);
@@ -103,6 +101,7 @@ public class ManageShowtimes {
 		System.out.println("Is the movie current or upcoming?");
 		status = sc.nextLine();
 		int n = 0;
+		flag = true;
 		while(flag) {
 			System.out.println("Please enter the showtimes you'd like to remove (type exit when finished)");
 			showtimes = sc.nextLine();
@@ -134,7 +133,6 @@ public class ManageShowtimes {
 		while(currentIterator.hasNext()) {
 			JSONObject movies = (JSONObject) currentIterator.next();
 			String  movie = (String ) movies.get("title");
-			String key = (String) movies.get("key");
 			JSONArray showtimes = (JSONArray) movies.get("showtimes");
 			JSONArray theaters = (JSONArray) movies.get("theaters");
 			String  numberOfSeats = (String) movies.get("numberOfSeats");
@@ -145,8 +143,7 @@ public class ManageShowtimes {
 			JSONArray castInfo = (JSONArray) movies.get("castInfo");
 			JSONObject tempFinal = new JSONObject();
 			JSONArray showtimesTemp = new JSONArray();
-			if(userInput.equals(key)) {
-				tempFinal.put("key" , key);
+			if(userInput.equals(movie)) {
 				tempFinal.put("title", movie);
 				tempFinal.put("theaters", theaters);
 				tempFinal.put("numberOfSeats", numberOfSeats);
@@ -155,14 +152,12 @@ public class ManageShowtimes {
 				tempFinal.put("price", price);
 				tempFinal.put("review", review);
 				tempFinal.put("castInfo", castInfo);
-				for(int j = 0; j < showtimes.size(); j++) {
+				Iterator showtimesIterator = showtimes.iterator();
+				while(showtimesIterator.hasNext()) {
 					for(int m = 0; m < n; m++) {
-						JSONObject tempShow = (JSONObject) showtimes.get(j);
-						StringWriter outString = new StringWriter();
-						tempShow.writeJSONString(outString);
-						String showtimeRemove = outString.toString();
-						if(showtimeRemove != showtime[m]) {
-							showtimesTemp.add(showtimeRemove);
+						String tempShow = (String) showtimesIterator.next();
+						if(tempShow != showtime[m]) {
+							showtimesTemp.add(tempShow);
 						}
 					}
 				}
