@@ -3,8 +3,7 @@ import java.util.*;
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 public class ManageMovies{
 	String key, title, status, numberOfSeats, synopsis, runtime, prices;
 	boolean flag = true;
@@ -69,7 +68,7 @@ public class ManageMovies{
 		flag = true;
 		int n = 0;
 		while(flag) {
-			System.out.println("Add cast information (type exit when finished");
+			System.out.println("Add cast information (type exit when finished)");
 			choice = sc.nextLine();
 			switch(choice) {
 				case "exit": 
@@ -132,9 +131,9 @@ public class ManageMovies{
 			z++;
 		}
 		newObject.put("castInfo", castInfos);
+		
 		jsonArray.add(newObject);
 		finalObject.put(status, jsonArray);
-
 		FileWriter fileToWrite = new FileWriter("src/movies.json", false);
 		try {
 			fileToWrite.write(finalObject.toJSONString());
@@ -148,12 +147,12 @@ public class ManageMovies{
 	@SuppressWarnings("unchecked")
 	public void removeShows() throws FileNotFoundException, IOException, ParseException {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("What is the movie key you like to remove?");
+		System.out.println("What is the movie key you'd like to remove?");
 		key = sc.nextLine();
 		System.out.println("What is the current status of the movie?");
 		status = sc.nextLine();
 		JSONParser parser = new JSONParser();
-	    JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("Src/movies.json"));
+	    JSONObject jsonObject = (JSONObject) parser.parse(new FileReader("src/movies.json"));
 	    JSONArray jsonArray = (JSONArray) jsonObject.get(status);
 	    JSONArray temp = new JSONArray();
 	    JSONObject finalObject = new JSONObject();
@@ -185,6 +184,7 @@ public class ManageMovies{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		fileToWrite.flush();
 		fileToWrite.close();
 		System.out.println("Movie removed from catalog");
 	}

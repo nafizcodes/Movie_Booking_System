@@ -43,7 +43,9 @@ public class Main {
 						flag = true;
 						while(flag) {
 							System.out.println(
-									"\n\n1.Browse Upcoming Movies \n2.Browse Current Movies \n3.Leave a review\n4.Return to previous menu\nChoose Option: ");
+									"\n\n--------------------------Customer Menu-----------------------------------");
+							System.out.println(
+									"\n1. Browse Upcoming Movies \n2. Browse Current Movies \n3. Leave a review\n4. Log Out\nChoose Option: ");
 							movieInput = sc.nextInt();
 							switch (movieInput) {
 								case 1:
@@ -74,8 +76,8 @@ public class Main {
 
 			if (choice.equals("a")) {
 				System.out.println(
-						"--------------------------Welcome to Admin's Portal-----------------------------------");
-				System.out.println("\n\n1.Create Account \n2.Login  \n3.Exit \nChoose Option: ");
+						"\n\n--------------------------Welcome to Admin's Portal-----------------------------------");
+				System.out.println("\n1.Create Account \n2.Login  \n3.Exit \nChoose Option: ");
 				input_int = sc.nextInt();
 				switch (input_int) {
 					case 1:
@@ -89,7 +91,9 @@ public class Main {
 						a.login();
 						flag = true;
 						while(flag) {
-							System.out.println("\n1. Add movies \n2. Remove movies\n3. Add showtimes\n4. Remove showtimes\n5.View Current Movies\n6.View Upcoming Movies\n7. Return to previous menu\nChoose Option");
+							System.out.println(
+									"--------------------------Welcome to Admin Menu-----------------------------------");
+							System.out.println("\n1. Add movies \n2. Remove movies\n3. Add showtimes\n4. Remove showtimes\n5. View Current Movies\n6. View Upcoming Movies\n7. Log Out\nChoose Option");
 							adminInput = sc.nextInt();
 							switch(adminInput) {
 								case 1:

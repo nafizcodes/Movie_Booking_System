@@ -66,6 +66,7 @@ public class ReviewMovie {
     		} catch (IOException e) {
     			e.printStackTrace();
     		}
+    		fileToWrite.flush();
     		fileToWrite.close();
     		if(flag == true) {
     			System.out.println("Review Added");

@@ -154,7 +154,7 @@ public class AdminDriver {
             System.out.println(
                     "\n------------------------------------------------Login successful---------------------------------------------"
                             +
-                            "\n--------------------------------------Welcome to Movie Booking System!-----------------------------------------");
+                            "\n--------------------------------------Welcome to Movie Booking System!-----------------------------------------\n\n");
 
             admin = getAdmin(email);
             return admin;

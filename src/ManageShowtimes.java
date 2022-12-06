@@ -17,7 +17,7 @@ public class ManageShowtimes {
 	public void addShowtimes() throws FileNotFoundException, IOException, ParseException {
 		Scanner sc = new Scanner(System.in);
 		String[] showtime = new String[10];
-		System.out.println("What is the key of the movie for which you'd like to add showtimes");
+		System.out.println("What is the key of the movie for which you'd like to add showtimes?");
 		userInput = sc.nextLine();
 		System.out.println("Is the movie current or upcoming?");
 		status = sc.nextLine();
@@ -90,6 +90,7 @@ public class ManageShowtimes {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		fileToWrite.flush();
 		fileToWrite.close();
 		System.out.println("Showtimes Added");  
 	}
@@ -97,7 +98,7 @@ public class ManageShowtimes {
 	public void removeShowtimes() throws FileNotFoundException, IOException, ParseException {
 		Scanner sc = new Scanner(System.in);
 		String[] showtime = new String[10];
-		System.out.println("What is the name of the movie for which you'd like to remove showtimes");
+		System.out.println("What is the name of the movie for which you'd like to remove showtimes?");
 		userInput = sc.nextLine();
 		System.out.println("Is the movie current or upcoming?");
 		status = sc.nextLine();
@@ -178,6 +179,7 @@ public class ManageShowtimes {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		fileToWrite.flush();
 		fileToWrite.close();
 		System.out.println("Showtimes removed from database");
 	}
