@@ -5,9 +5,10 @@ import org.json.simple.parser.*;
 
 public class SelectMovie {
     public void selectMovie() {
+    	boolean flag = true;
         System.out.println("\nPlease Enter the movie key you would like to see: ");
         Scanner sc = new Scanner(System.in);
-        String input_movie = sc.next();
+        String input_movie = sc.nextLine();
 
         Random rand = new Random();
 
@@ -45,12 +46,19 @@ public class SelectMovie {
                     String theaterLocation = sc.nextLine();
                     // ask user to select showtime of the movie
                     System.out.println("Please select your showtime");
-                    String input_showtime = sc.next();
+                    String input_showtime = sc.nextLine();
 
                     // ask user to select showtime of the movie
-                    System.out.println("Please select the number of tickets you would like to purchase:");
-                    int tickets = sc.nextInt();
-                    
+                    int tickets = 0;
+                    while(flag) {
+	                    System.out.println("Please select the number of tickets you would like to purchase (Max 10):");
+	                    tickets = sc.nextInt();
+	                    if(tickets > 10) {
+	                    	System.out.println("Maximum tickets is 10. Please try again.");
+	                    }else {
+	                    	flag = false;
+	                    }
+                    }
                     System.out.println("Payment Processing....");
                     
                     int price = Integer.parseInt(prices);
