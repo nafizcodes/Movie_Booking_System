@@ -23,3 +23,12 @@ The following instructions will get you a copy of the project and running on you
 - Install a [simple Java toolkit](https://code.google.com/archive/p/json-simple/) for decoding and encoding JSON files
 - Put the downloaded *json-simple-1.1.1.jar* file in your *.classpath* before compiling and running the project
     - Make sure that the ```path``` in the ```classpathentry``` contains the filepath where you stored the ```jar``` file
+
+## State Diagrams
+*Customer State Diagram*
+
+![Customer State Diagram](images/Customer_State_Diagram.png)
+
+*Admin State Diagram*
+
+![Admin State Diagram](images/Admin_State_Diagram.png)
